@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "38b92b1c-b36c-41b2-a540-11f73463c133",
+		"name": "PSP-EJ2-EXPORT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listado de ofertas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Detalle de una oferta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticación",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\",\n    \"rememberMe\": \"false\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cev-psp-ej2-back.herokuapp.com/api/authenticate",
+					"protocol": "https",
+					"host": [
+						"cev-psp-ej2-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar una nueva oferta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYzNjEyOTA4Mn0.1zlwA7XkDIbvDJd_gTe7RVR6MGi2DiBCEIV5BuTQT-Km5hNKuZ7qQF7TmbJoxmaHT0Mi1aubvYrBl6r6zqC6rw",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"titulo\": \"Oferta insertada desde Postman!\",\n        \"descripcion\": \"Esta es una descripción\",\n        \"empresa\": \"CEV\",\n        \"salario\": 20000,\n        \"ciudad\": \"Zaragoza\",\n        \"email\": \"zaragoza@cev.com\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cev-psp-ej2-back.herokuapp.com/api/ofertas",
+					"protocol": "https",
+					"host": [
+						"cev-psp-ej2-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una oferta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYzNjEyOTA4Mn0.1zlwA7XkDIbvDJd_gTe7RVR6MGi2DiBCEIV5BuTQT-Km5hNKuZ7qQF7TmbJoxmaHT0Mi1aubvYrBl6r6zqC6rw",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"titulo\": \"Oferta insertada desde Postman!\",\n        \"descripcion\": \"Esta es una descripción\",\n        \"empresa\": \"CEV\",\n        \"salario\": 20000,\n        \"ciudad\": \"Zaragoza\",\n        \"email\": \"zaragoza@cev.com\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cev-psp-ej2-back.herokuapp.com/api/ofertas/4",
+					"protocol": "https",
+					"host": [
+						"cev-psp-ej2-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ofertas",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,55 +1,126 @@
 # Programación de servicios y procesos: Plataforma para ofertar empleo (Ejercicio final)
 
-**Backend** para el ejercicio 2 de Programación de Servicios y Procesos. Se plantea el
-enunciado.
+**Backend** para el ejercicio 2 de Programación de Servicios y Procesos.
 
-En este ejercicio tendremos dos partes, por un lado la parte de implementación y,por otro,
-la elaboración de un documento explicativo.
+## Que vas a encontrar aquí
 
-### Plataforma para ofertar empleo
+* Este repositorio genera una API REST, creada con JHipster (Spring Boot)
+* Si no quieres montarte esta API, la tienes disponible
+  en: [https://cev-psp-ej2-back.herokuapp.com/](https://cev-psp-ej2-back.herokuapp.com/). Obviamente, si pinchas el link
+  te mostrará _Your request cannot be processed_, recuerda que esto es un API rest.
+* Puedes probar [importando en Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
+  el fichero `PSP-EJ2-EXPORT.postman_collection.json` que se encuentra en la raíz de este repositorio.
 
-Se quiere implementar una plataforma en Angular para ofertar empleo. La solución constará de las siguientes pantallas:
+### Documentación
 
-### Home
+#### Listado de ofertas ([`https://cev-psp-ej2-back.herokuapp.com/api/ofertas`](`https://cev-psp-ej2-back.herokuapp.com/api/ofertas`))
 
-Pantalla principal. Es la primera que se abre al entrar.
-En esta pantalla se listaran las ofertas de empleo disponibles (sólo el título). Utilizar para ello una estructura tabular con ayuda de Bootstrap.
-Al lado de cada oferta habrá un enlace Ver que permitirá ver toda la información de la oferta.
-Las ofertas las puede consultar cualquiera. No es necesario estar registrado.
-En esta pantalla también habrá un enlace a la pantalla de login.
+* Método: GET
+* Auth: No
+* Entrada: N/A
+* Salida:
 
-### Oferta
+```json
+[
+  {
+    "id": 1,
+    "titulo": "Buckinghamshire",
+    "descripcion": "forecast",
+    "empresa": "Developer Hong Kong Dollar synthesize",
+    "salario": 58479,
+    "ciudad": "Nepal Human array",
+    "email": "Madge_Mayert@hotmail.com"
+  }
+]
+  ```
 
-En esta pantalla se mostrarán los detalles de una oferta. A esta pantalla se accede desde la pantalla home.
-Por cada oferta se mostrará su título, la descripción, la empresa que la oferta y la ciudad en la que se desarrollará el trabajo, el salario en euros y una dirección de email para enviar el CV.
-En esta misma pantalla habrá un enlace para regresar a la pantalla home y así poder seguir consultando ofertas.
-El detalle de la oferta lo puede consultar cualquiera. No es necesario estar registrado.
+#### Detalle de oferta ([`https://cev-psp-ej2-back.herokuapp.com/api/ofertas/1`](`https://cev-psp-ej2-back.herokuapp.com/api/ofertas/1`))
 
-### Login
+* Método: GET
+* Auth: No
+* Entrada: N/A
+* Salida:
 
-Desde esta pantalla solo se pueden loguear los administradores que ya disponen de unas credenciales. No existe la opción de registro.
-Cuando un administrador intenta ingresar con su usuario y contraseña será redirigido a la pantalla ofertas para poder administrar las mismas.
-Si al intentar loguearse introduce las credenciales mal se quedará en la pantalla login y se le mostrará un mensaje indicando que las credenciales son incorrectas.
+```json
+{
+  "id": 1,
+  "titulo": "Buckinghamshire",
+  "descripcion": "forecast",
+  "empresa": "Developer Hong Kong Dollar synthesize",
+  "salario": 58479,
+  "ciudad": "Nepal Human array",
+  "email": "Madge_Mayert@hotmail.com"
+}
+  ```
 
-### Ofertas
+#### Autenticación ([`https://cev-psp-ej2-back.herokuapp.com/api/authenticate`](`https://cev-psp-ej2-back.herokuapp.com/api/authenticate`))
 
-Esta pantalla es desde donde el administrador gestiona las ofertas. En esta pantalla podrá ver el listado de ofertas disponibles. Junto a cada oferta habrá un botón o enlace que permitirá eliminar la oferta. Cuando se pinche en el, la oferta será eliminada de forma permanente.
-Además, en esta misma pantalla habrá un enlace para abrir la pantalla nuevaoferta desde la que el administrador podrá registrar una nueva oferta.
+* Método: POST
+* Auth: No
+* Entrada:
 
-### Nueva oferta
+```json
+{
+  "username": "admin",
+  "password": "admin",
+  "rememberMe": "false"
+}
+  ```
 
-Esta pantalla tendrá un formulario desde el que se podrá registrar una nueva oferta. Los campos del formulario deben ser:
-* Título: Título descriptivo de la oferta que no supere los 100 caracteres (ej: Se busca programador Angular Junior)
-* Descripción: Breve descripción del puesto de trabajo que se oferta. No superará los 300 caracteres.
-* Empresa: Nombre de la empresa que oferta el puesto de trabajo. No superará los 50 caracteres.
-* Salario: Salario bruto anual en euros
-* Ciudad: No superará los 50 caracteres
-* Email: Dirección de correo al que se debe enviar el CV. No superará los 50 caracteres.
+* Salida:
 
-Los requisitos son:
-* Utiliza Bootstrap para maquetarlo.
-* Todos los campos deben ser obligatorios y deben cumplir con las validaciones indicadas de longitud.
-* Todos los datos que gestiona la aplicación se obtienen de un API. Tanto la información de las ofertas, como los datos de autenticación para el administrador. Las altas y bajas de ofertas también deben ser gestionadas a través de peticiones al mismo API.
+```json
+{
+  "id_token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYzNjEyOTA4Mn0.1zlwA7XkDIbvDJd_gTe7RVR6MGi2DiBCEIV5BuTQT-Km5hNKuZ7qQF7TmbJoxmaHT0Mi1aubvYrBl6r6zqC6rw"
+}
+  ```
 
-Para realizar esta tarea se os proporciona un API ya implementado con JHipster que se detalla a continuación. Ya devuelve algunos datos iniciales de prueba.
+#### Insertar nueva oferta ([`https://cev-psp-ej2-back.herokuapp.com/api/ofertas`](`https://cev-psp-ej2-back.herokuapp.com/api/ofertas`))
 
+* Método: POST
+* Auth: Bearer token
+* Entrada:
+
+```json
+{
+  "titulo": "Buckinghamshire",
+  "descripcion": "forecast",
+  "empresa": "Developer Hong Kong Dollar synthesize",
+  "salario": 58479,
+  "ciudad": "Nepal Human array",
+  "email": "Madge_Mayert@hotmail.com"
+}
+  ```
+
+* Salida:
+
+```json
+{
+  "id": 998876,
+  "titulo": "Buckinghamshire",
+  "descripcion": "forecast",
+  "empresa": "Developer Hong Kong Dollar synthesize",
+  "salario": 58479,
+  "ciudad": "Nepal Human array",
+  "email": "Madge_Mayert@hotmail.com"
+}
+  ```
+
+#### Eliminar oferta ([`https://cev-psp-ej2-back.herokuapp.com/api/ofertas/1`](`https://cev-psp-ej2-back.herokuapp.com/api/ofertas/1`))
+
+* Método: DELETE
+* Auth: Bearer token
+* Entrada: N/A
+* Salida:
+
+```json
+{
+  "id": 1,
+  "titulo": "Buckinghamshire",
+  "descripcion": "forecast",
+  "empresa": "Developer Hong Kong Dollar synthesize",
+  "salario": 58479,
+  "ciudad": "Nepal Human array",
+  "email": "Madge_Mayert@hotmail.com"
+}
+```
