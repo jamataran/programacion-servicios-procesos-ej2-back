@@ -10,7 +10,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://cev-psp-ej2-back.herokuapp.com/api/ofertas",
+					"protocol": "https",
+					"host": [
+						"cev-psp-ej2-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ofertas"
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +31,20 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://cev-psp-ej2-back.herokuapp.com/api/ofertas/1",
+					"protocol": "https",
+					"host": [
+						"cev-psp-ej2-back",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ofertas",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
